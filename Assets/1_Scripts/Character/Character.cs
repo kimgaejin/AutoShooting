@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public enum CharacterType { NONE, PLAYER, FRIENDLY, OFFENSIVE };
+
     protected bool enable;
     protected int maxHealth;
     protected int health;
     protected int attack;
     protected int speed;
-    protected int team;
+    protected CharacterType characterType;
 
     public int Hp{
         get { return health;  }
@@ -19,13 +21,13 @@ public class Character : MonoBehaviour
         }
     }
 
-    public virtual void Init(int _maxHealth, int _attack, int _speed, int _team)
+    public virtual void Init(int _maxHealth, int _attack, int _speed, CharacterType _characterType)
     {
         this.maxHealth = _maxHealth;
         this.Hp = _maxHealth;
         this.attack = _attack;
         this.speed = _speed;
-        this.team = _team;
+        this.characterType = _characterType;
         this.enable = true;
     }
 
@@ -34,9 +36,9 @@ public class Character : MonoBehaviour
     /// </summary>
     /// <param name="_team"></param>
     /// <returns> 같은 팀이라면 true 반환 </returns>
-    public bool CompareTeam(int _team)
+    public bool CompareTeam(CharacterType _characterType)
     {
-        return Equals(team, _team);
+        return Equals(characterType, _characterType);
     }
 
     /// <summary>
