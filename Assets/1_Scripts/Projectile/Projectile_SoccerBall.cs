@@ -15,7 +15,7 @@ public class Projectile_SoccerBall : Projectile
         Character collCharacter = coll.GetComponent<Character>();
         if (collCharacter)
         {
-            if (!collCharacter.CompareTeam(team))
+            if (!collCharacter.CompareTeam(ownerType))
             {
                 collCharacter.Damaged(damage);
 
@@ -43,9 +43,9 @@ public class Projectile_SoccerBall : Projectile
         base.Move();
     }
 
-    public override void Shoot(Vector3 start, Vector3 dest, int _team, float speed = 1, float damage = 1)
+    public override void Shoot(Vector3 start, Vector3 dest, Character.CharacterType _characterType, float speed = 1, float damage = 1)
     {
-        base.Shoot(start, dest, _team, speed, damage);
+        base.Shoot(start, dest, _characterType, speed, damage);
         bounceLife = 1;
     }
 }

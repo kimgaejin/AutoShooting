@@ -12,9 +12,9 @@ public class Player : Character
     private int projType;
     private List<Skill> skills;
 
-    public override void Init(int _maxHealth, int _attack, int _speed, CharacterType _characterType = CharacterType.PLAYER)
+    public override void Init(long _id, int _maxHealth, int _attack, int _speed, CharacterType _characterType = CharacterType.PLAYER)
     {
-        base.Init(_maxHealth, _attack, _speed, _characterType);
+        base.Init(_id, _maxHealth, _attack, _speed, _characterType);
 
         rigid = GetComponent<Rigidbody>();
 

@@ -19,7 +19,7 @@ public class MonsterManager : MonoBehaviour
         foreach (Transform tf in tempMonsterParent.transform)
         {
             enableMonster.Enqueue(tf.gameObject);
-            tf.GetComponent<Character>().Init(10000, 0, 0, 2);
+            tf.GetComponent<Character>().Init(1, 10000, 0, 0, Character.CharacterType.OFFENSIVE);
         }
     }
 

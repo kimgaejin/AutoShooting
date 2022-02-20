@@ -22,8 +22,8 @@ public class Projectile_Arrow : Projectile
         base.Move();
     }
 
-    public override void Shoot(Vector3 start, Vector3 dest, int _team, float speed = 1, float damage = 1)
+    public override void Shoot(Vector3 start, Vector3 dest, Character.CharacterType _characterType, float speed = 1, float damage = 1)
     {
-        base.Shoot(start, dest, _team, speed, damage);
+        base.Shoot(start, dest, _characterType, speed, damage);
     }
 }

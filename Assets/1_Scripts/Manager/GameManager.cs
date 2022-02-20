@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         projectileManager.Init();
         monsterManager.Init();
 
-        player.Init(50, 10, 2);
+        player.Init(0, 50, 10, 2);
     }
 
     private void FixedUpdate()

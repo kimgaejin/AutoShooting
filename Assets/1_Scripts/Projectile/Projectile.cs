@@ -14,7 +14,8 @@ public class Projectile : MonoBehaviour
     protected Vector3 arrowVec;
     protected float timer;
     protected int damage;
-    protected int team;   // 누구의 화살인지 식별하여 충돌할지 안할지 결정
+    protected long ownerId;
+    protected Character.CharacterType ownerType;   // 누구의 화살인지 식별하여 충돌할지 안할지 결정
     protected int projType;   // 화살의 모델링, 이펙트 종류
 
     public virtual Projectile Init(ProjectileManager _projectileManager, int _type)
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour
     /// <param name="_team">충돌 여부: 1 플레이어, 2 몬스터. 팀이 같을 시 맞지 않음</param>
     /// <param name="speed"></param>
     /// <param name="damage"></param>
-    public virtual void Shoot(Vector3 start, Vector3 dest, int _team, float speed=1.0f, float damage=1)
+    public virtual void Shoot(Vector3 start, Vector3 dest, Character.CharacterType _ownerType, float speed=1.0f, float damage=1)
     {
         this.gameObject.SetActive(true);
 
@@ -45,7 +46,7 @@ public class Projectile : MonoBehaviour
         arrowVec = diff;
         transform.rotation = Quaternion.Euler(0, -Mathf.Atan2(diff.z, diff.x) * Mathf.Rad2Deg, 0);
         // 팀
-        this.team = _team;
+        this.ownerType = _ownerType;
         // 활성화 여부
         myAble = true;
         timer = 0.0f;
@@ -87,7 +88,7 @@ public class Projectile : MonoBehaviour
         Character collCharacter = coll.GetComponent<Character>();
         if (collCharacter)
         {
-            if (!collCharacter.CompareTeam(team))
+            if (!collCharacter.CompareTeam(ownerType))
             {
                 collCharacter.Damaged(damage);
                 Delete();
